@@ -1,4 +1,5 @@
 function! s:Hindent()
+    exec "norm mz"
     if !executable("hindent")
         echom "Hindent not found in $PATH, did you installed it? (stack install hindent)"
         return
@@ -12,6 +13,7 @@ function! s:Hindent()
     else
         silent! exec "%!hindent"
     endif
+    exec "norm `z"
 endfunction
 
 augroup hindent
