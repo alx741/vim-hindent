@@ -12,7 +12,7 @@ function! s:Hindent()
     execute 'redraw!'
 
     if v:shell_error
-        echom "Hindent: Parsing error"
+        echomsg "Hindent: Parsing error"
     else
         silent! execute "%!hindent"
     endif
