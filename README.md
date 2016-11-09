@@ -11,3 +11,9 @@ that annoyance.
 ## Installation
 
 Compatible with `Vundle`, `Pathogen`, `Vim-plug`.
+
+
+## Configuration
+
+Use the `g:hindent_indent_size` variable to control the number of spaces per
+indentation (default = 2).
