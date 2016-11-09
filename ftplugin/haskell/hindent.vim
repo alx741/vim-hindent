@@ -1,6 +1,4 @@
 function! s:Hindent()
-    "set dummy mark to save cursor position
-    execute "norm mz"
     let l:winview = winsaveview()
 
     if !executable("hindent")
@@ -17,10 +15,6 @@ function! s:Hindent()
         silent! execute "%!hindent"
     endif
 
-    " jump back to previous position
-    execute "norm `z"
-    " rm dummy mark
-    execute "delmarks z"
     call winrestview(l:winview)
 
 endfunction
