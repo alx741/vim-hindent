@@ -1,22 +1,26 @@
 function! s:Hindent()
-    exec "norm mz"
+    "set dummy mark to save cursor position
+    execute "norm mz"
     let l:winview = winsaveview()
 
     if !executable("hindent")
-        echom "Hindent not found in $PATH, did you installed it? (stack install hindent)"
+        echomsg "Hindent not found in $PATH, did you installed it? (stack install hindent)"
         return
     endif
 
-    silent! silent exec "!cat % | hindent"
-    exec ':redraw!'
+    silent! silent execute "!hindent < %"
+    execute 'redraw!'
 
     if v:shell_error
-        echom "Hindent: Parsing error"
+        echomsg "Hindent: Parsing error"
     else
-        silent! exec "%!hindent"
+        silent! execute "%!hindent"
     endif
 
-    exec "norm `z"
+    " jump back to previous position
+    execute "norm `z"
+    " rm dummy mark
+    execute "delmarks z"
     call winrestview(l:winview)
 
 endfunction
