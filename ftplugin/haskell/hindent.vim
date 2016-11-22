@@ -7,7 +7,10 @@ if !exists("g:hindent_on_save")
 endif
 
 
-function! s:Hindent()
+command! Hindent execute "call hindent#Hindent()"
+
+
+function! hindent#Hindent()
     let l:winview = winsaveview()
 
     if !executable("hindent")
@@ -32,6 +35,6 @@ endfunction
 if exists("g:hindent_on_save") && g:hindent_on_save == 1
     augroup hindent
         autocmd!
-        autocmd BufWritePost *.hs call s:Hindent()
+        autocmd BufWritePost *.hs call hindent#Hindent()
     augroup END
 endif
