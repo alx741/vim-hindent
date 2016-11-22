@@ -15,5 +15,14 @@ Compatible with `Vundle`, `Pathogen`, `Vim-plug`.
 
 ## Configuration
 
-Use the `g:hindent_indent_size` variable to control the number of spaces per
-indentation (default = 2).
+Trigger Hindent when saving (default = 1):
+
+```vim
+g:hindent_on_save = 1
+```
+
+Number of spaces per indentation (default = 2):
+
+```vim
+g:hindent_indent_size = 2
+```
