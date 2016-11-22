@@ -13,6 +13,13 @@ that annoyance.
 Compatible with `Vundle`, `Pathogen`, `Vim-plug`.
 
 
+## Usage
+
+By default *vim-hindent* will format your code automatically when saving a
+Haskell source file, but you can use the `:Hindent` command to format the
+current file.
+
+
 ## Configuration
 
 Trigger Hindent when saving (default = 1):
