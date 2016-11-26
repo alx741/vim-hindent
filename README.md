@@ -33,3 +33,9 @@ Number of spaces per indentation (default = 2):
 ```vim
 g:hindent_indent_size = 2
 ```
+
+Max line length (default = 100):
+
+```vim
+g:hindent_line_length = 100
+```
