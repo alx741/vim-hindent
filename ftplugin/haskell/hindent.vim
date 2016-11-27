@@ -23,7 +23,7 @@ function! hindent#Hindent()
         return
     endif
 
-    silent! silent execute "keepjumps !hindent < %"
+    silent! silent execute "keepjumps !hindent < % > /dev/null 2>&1"
     execute 'redraw!'
 
     if v:shell_error
