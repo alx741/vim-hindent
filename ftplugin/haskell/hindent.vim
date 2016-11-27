@@ -23,13 +23,15 @@ function! hindent#Hindent()
         return
     endif
 
-    silent! silent execute "!hindent < %"
+    silent! silent execute "keepjumps !hindent < %"
     execute 'redraw!'
 
     if v:shell_error
         echomsg "Hindent: Parsing error"
     else
-        silent! execute "%!hindent --indent-size " . g:hindent_indent_size .
+        silent! execute "undojoin"
+        silent! execute "keepjumps %!hindent" .
+                    \ " --indent-size " . g:hindent_indent_size .
                     \ " --line-length " . g:hindent_line_length
     endif
 
