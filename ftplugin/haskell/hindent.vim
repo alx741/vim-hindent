@@ -11,7 +11,7 @@ if !exists("g:hindent_on_save")
 endif
 
 
-command! Hindent execute "call hindent#Hindent()"
+command! Hindent exe "call hindent#Hindent()"
 
 
 function! hindent#Hindent()
@@ -23,14 +23,14 @@ function! hindent#Hindent()
         return
     endif
 
-    silent! silent execute "keepjumps !hindent < % > /dev/null 2>&1"
-    execute 'redraw!'
+    silent! silent exe "keepjumps !hindent < % > /dev/null 2>&1"
+    exe 'redraw!'
 
     if v:shell_error
         echomsg "Hindent: Parsing error"
     else
-        silent! execute "undojoin"
-        silent! execute "keepjumps %!hindent" .
+        silent! exe "undojoin"
+        silent! exe "keepjumps %!hindent" .
                     \ " --indent-size " . g:hindent_indent_size .
                     \ " --line-length " . g:hindent_line_length
     endif
