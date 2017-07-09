@@ -44,3 +44,7 @@ if g:hindent_on_save == 1
         autocmd BufWritePre *.hs call hindent#Hindent()
     augroup END
 endif
+
+
+" For use with the gq operator (:help gq)
+setlocal formatprg=hindent
