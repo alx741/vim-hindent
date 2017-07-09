@@ -24,7 +24,6 @@ function! hindent#Hindent()
     endif
 
     silent! silent exe "keepjumps !hindent < % > /dev/null 2>&1"
-    exe 'redraw!'
 
     if v:shell_error
         echomsg "Hindent: Parsing error"
@@ -42,6 +41,6 @@ endfunction
 if exists("g:hindent_on_save") && g:hindent_on_save == 1
     augroup hindent
         autocmd!
-        autocmd BufWritePost *.hs call hindent#Hindent()
+        autocmd BufWritePre *.hs call hindent#Hindent()
     augroup END
 endif
