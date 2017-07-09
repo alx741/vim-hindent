@@ -38,7 +38,7 @@ function! hindent#Hindent()
 endfunction
 
 
-if exists("g:hindent_on_save") && g:hindent_on_save == 1
+if g:hindent_on_save == 1
     augroup hindent
         autocmd!
         autocmd BufWritePre *.hs call hindent#Hindent()
