@@ -15,7 +15,7 @@ function! hindent#Hindent()
         return
     endif
 
-    silent! silent exe "keepjumps !hindent < % > /dev/null 2>&1"
+    let l:result = system("hindent < % > /dev/null 2>&1")
 
     if v:shell_error
         echomsg "Hindent: Parsing error"
