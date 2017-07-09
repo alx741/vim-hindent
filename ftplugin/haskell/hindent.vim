@@ -15,11 +15,14 @@ function! hindent#Hindent()
         return
     endif
 
-    silent! silent exe "keepjumps !hindent < % > /dev/null 2>&1"
-    silent! exe "redraw!"
+    " Write the buffer to hindent, rather than having it use the
+    " file on disk, because that file might not have been created yet!
+    silent! w !hindent > /dev/null 2>&1
 
     if v:shell_error
-        echomsg "Hindent: Parsing error"
+        echohl WarningMsg
+        echo "Hindent: Parsing error\n"
+        echohl None
     else
         let l:indent_opt = ""
         if exists("g:hindent_indent_size")
