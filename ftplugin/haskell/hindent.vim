@@ -1,11 +1,3 @@
-if !exists("g:hindent_indent_size")
-    let g:hindent_indent_size = 2
-endif
-
-if !exists("g:hindent_line_length")
-    let g:hindent_line_length = 100
-endif
-
 if !exists("g:hindent_on_save")
     let g:hindent_on_save = 1
 endif
@@ -28,10 +20,18 @@ function! hindent#Hindent()
     if v:shell_error
         echomsg "Hindent: Parsing error"
     else
+        let l:indent_opt = ""
+        if exists("g:hindent_indent_size")
+          let l:indent_opt = " --indent-size " . g:hindent_indent_size
+        endif
+
+        let l:line_length_opt = ""
+        if exists("g:hindent_line_length")
+          let l:line_length_opt = " --line-length " . g:hindent_line_length
+        endif
+
         silent! exe "undojoin"
-        silent! exe "keepjumps %!hindent" .
-                    \ " --indent-size " . g:hindent_indent_size .
-                    \ " --line-length " . g:hindent_line_length
+        silent! exe "keepjumps %!hindent" . l:indent_opt . l:line_length_opt
     endif
 
     call winrestview(l:winview)
