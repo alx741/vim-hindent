@@ -19,6 +19,9 @@ By default, *vim-hindent* will format your code automatically when saving a
 Haskell source file, but you can use the `:Hindent` command at any time to
 format the current file.
 
+Use `:HindentEnable`, `:HindentDisable`, `:HindentToggle` to enable, disable, or
+toggle running `hindent` on save.
+
 
 ## Configuration
 
@@ -28,13 +31,13 @@ Trigger *hindent* when saving (default = 1):
 g:hindent_on_save = 1
 ```
 
-Number of spaces per indentation (default = 2):
+Number of spaces per indentation (default = '', uses `hindent` default of 2):
 
 ```vim
 g:hindent_indent_size = 2
 ```
 
-Max line length (default = 100):
+Max line length (default = `''`, uses `hindent` default of 80):
 
 ```vim
 g:hindent_line_length = 100
