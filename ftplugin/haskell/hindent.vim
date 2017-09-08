@@ -66,7 +66,3 @@ command! Hindent exe "call hindent#Hindent()"
 command! HindentEnable exe "call hindent#HindentEnable()"
 command! HindentDisable exe "call hindent#HindentDisable()"
 command! HindentToggle exe "call hindent#HindentToggle()"
-
-
-" For use with the gq operator (:help gq)
-setlocal formatprg=hindent
