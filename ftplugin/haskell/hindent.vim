@@ -3,7 +3,15 @@ if !exists("g:hindent_on_save")
 endif
 
 
-command! Hindent exe "call hindent#Hindent()"
+function! hindent#HindentEnable()
+    let g:hindent_on_save = 1
+endfunction
+function! hindent#HindentDisable()
+    let g:hindent_on_save = 0
+endfunction
+function! hindent#HindentToggle()
+    let g:hindent_on_save = !g:hindent_on_save
+endfunction
 
 
 function! hindent#Hindent()
@@ -41,10 +49,24 @@ function! hindent#Hindent()
     call winrestview(l:winview)
 endfunction
 
+function! hindent#HindentOnSave()
+    if g:hindent_on_save == 1
+        call hindent#Hindent()
+    endif
+endfunction
 
-if g:hindent_on_save == 1
-    augroup hindent
-        autocmd!
-        autocmd BufWritePre *.hs call hindent#Hindent()
-    augroup END
-endif
+
+augroup hindent
+    autocmd!
+    autocmd BufWritePre *.hs call hindent#HindentOnSave()
+augroup END
+
+
+command! Hindent exe "call hindent#Hindent()"
+command! HindentEnable exe "call hindent#HindentEnable()"
+command! HindentDisable exe "call hindent#HindentDisable()"
+command! HindentToggle exe "call hindent#HindentToggle()"
+
+
+" For use with the gq operator (:help gq)
+setlocal formatprg=hindent
