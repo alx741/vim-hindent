@@ -7,6 +7,8 @@ Simply using `:%!hindent` replaces your whole source file with an error message
 from **hindent** when you happen to have a syntax error in your code, this
 plugin manages that annoyance.
 
+*Note:* If you prefer *stylish-haskell* use
+[vim-stylishask](https://github.com/alx741/vim-stylishask) instead.
 
 ## Installation
 
