@@ -14,7 +14,7 @@ function! hindent#HindentToggle()
 endfunction
 
 
-function! hindent#Hindent()
+function! hindent#Hindent() range
     let l:winview = winsaveview()
 
     if !executable("hindent")
@@ -43,7 +43,7 @@ function! hindent#Hindent()
         endif
 
         silent! exe "undojoin"
-        silent! exe "keepjumps %!hindent" . l:indent_opt . l:line_length_opt
+        silent! exe "keepjumps " . a:firstline . "," . a:lastline . "!hindent" . l:indent_opt . l:line_length_opt
     endif
 
     call winrestview(l:winview)
@@ -62,7 +62,7 @@ augroup hindent
 augroup END
 
 
-command! Hindent exe "call hindent#Hindent()"
+command! -range=% Hindent exe "<line1>, <line2>call hindent#Hindent()"
 command! HindentEnable exe "call hindent#HindentEnable()"
 command! HindentDisable exe "call hindent#HindentDisable()"
 command! HindentToggle exe "call hindent#HindentToggle()"
