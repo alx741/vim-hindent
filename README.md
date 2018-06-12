@@ -21,6 +21,9 @@ By default, *vim-hindent* will format your code automatically when saving a
 Haskell source file, but you can use the `:Hindent` command at any time to
 format the current file.
 
+To apply *hindent* on a range, either write the range manually or visually
+select the desired code and then invoke `:Hindent`.
+
 Use `:HindentEnable`, `:HindentDisable`, `:HindentToggle` to enable, disable, or
 toggle running `hindent` on save.
 
