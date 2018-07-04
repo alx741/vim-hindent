@@ -49,7 +49,8 @@ endfunction
 
 function! hindent#HindentOnSave()
     if g:hindent_on_save == 1
-        call hindent#Hindent()
+        let b:winview = winsaveview()
+        exe "%call hindent#Hindent()"
     endif
 endfunction
 
