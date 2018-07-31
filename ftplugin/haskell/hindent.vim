@@ -1,6 +1,9 @@
 if !exists("g:hindent_on_save")
     let g:hindent_on_save = 1
 endif
+if !exists("g:hindent_command") && executable("hindent")
+    let g:hindent_command = "hindent"
+endif
 
 
 function! hindent#HindentEnable()
@@ -15,15 +18,14 @@ endfunction
 
 
 function! hindent#Hindent() range
-    if !executable("hindent")
-        echomsg "Hindent not found in $PATH, did you installed it?
+    if !exists("g:hindent_command")
+        echomsg "Hindent not found in $PATH, did you install it?
                     \ (stack install hindent)"
         return
     endif
-
     " Write the buffer to hindent, rather than having it use the
     " file on disk, because that file might not have been created yet!
-    silent! w !hindent > /dev/null 2>&1
+    silent! exe "w !" . g:hindent_command . " > /dev/null 2>&1"
 
     if v:shell_error
         echohl WarningMsg
@@ -41,7 +43,7 @@ function! hindent#Hindent() range
         endif
 
         silent! exe "undojoin"
-        silent! exe "keepjumps " . a:firstline . "," . a:lastline . "!hindent" . l:indent_opt . l:line_length_opt
+        silent! exe "keepjumps " . a:firstline . "," . a:lastline . "!" . g:hindent_command . l:indent_opt . l:line_length_opt
     endif
 
     call winrestview(b:winview)

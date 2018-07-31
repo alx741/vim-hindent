@@ -47,3 +47,9 @@ Max line length (default = `''`, uses `hindent` default of 80):
 ```vim
 g:hindent_line_length = 100
 ```
+
+Specify the path to the hindent executable (for example if you installed hindent with `stack build --copy-compiler-tool hindent`)
+
+```vim
+g:hindent_command = "stack exec -- hindent"
+```
